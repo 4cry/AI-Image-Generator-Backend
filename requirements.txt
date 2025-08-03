@@ -1,0 +1,4 @@
+scratchattach
+pillow
+urllib.parse
+python-io
