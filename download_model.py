@@ -10,10 +10,15 @@ _marker = os.path.join(_model_dir, ".done")
 
 def ensure_model():
     if os.path.exists(_marker):
-        return True
+        if os.path.exists(_model_path):
+            return True
 
     parts = sorted(glob.glob(os.path.join(_model_dir, "model.onnx.part_*")))
     if not parts:
+        if os.path.exists(_model_path):
+            with open(_marker, "w") as f:
+                f.write("done")
+            return True
         print("ERROR: No model parts found.")
         return False
 
@@ -22,6 +27,9 @@ def ensure_model():
         for part in parts:
             with open(part, "rb") as f:
                 out.write(f.read())
+
+    for part in parts:
+        os.remove(part)
 
     with open(_marker, "w") as f:
         f.write("done")
