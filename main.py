@@ -1,4 +1,5 @@
 import gc
+import json
 import os
 import scratchattach as sa
 import time
@@ -15,12 +16,17 @@ try:
 except FileNotFoundError:
     pass
 
-scratch_user = "REDACTED_USER"
-scratch_pass = "REDACTED_PASSWORD"
-scratch_project = "1203338747"
+config_path = os.path.join(project_path, "config.json")
+if not os.path.exists(config_path):
+    print("ERROR: config.json not found. Create it with:")
+    print('  {"scratch_user": "your_username", "scratch_pass": "your_password", "scratch_project": "your_project_id"}')
+    exit(1)
 
-session = sa.login(scratch_user, scratch_pass)
-cloud = session.connect_scratch_cloud(scratch_project)
+with open(config_path) as f:
+    config = json.load(f)
+
+session = sa.login(config["scratch_user"], config["scratch_pass"])
+cloud = session.connect_scratch_cloud(config["scratch_project"])
 
 n = 250
 

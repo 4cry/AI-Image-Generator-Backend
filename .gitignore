@@ -7,3 +7,4 @@ models/nsfw_onnx/model.onnx
 models/nsfw_onnx/.done
 models/nsfw_onnx/.cache/
 *.sb3
+config.json
