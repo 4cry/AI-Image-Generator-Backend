@@ -15,9 +15,9 @@ try:
 except FileNotFoundError:
     pass
 
-scratch_user = os.environ.get("SCRATCH_USERNAME", "your_username")
-scratch_pass = os.environ.get("SCRATCH_PASSWORD", "your_password")
-scratch_project = os.environ.get("SCRATCH_PROJECT_ID", "your_project_id")
+scratch_user = "REDACTED_USER"
+scratch_pass = "REDACTED_PASSWORD"
+scratch_project = "1203338747"
 
 session = sa.login(scratch_user, scratch_pass)
 cloud = session.connect_scratch_cloud(scratch_project)
