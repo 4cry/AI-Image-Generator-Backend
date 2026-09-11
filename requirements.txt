@@ -1,4 +1,6 @@
 scratchattach
 pillow
-urllib.parse
-python-io
+requests
+onnxruntime
+tokenizers
+numpy
